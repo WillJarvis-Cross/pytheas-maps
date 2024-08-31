@@ -3,14 +3,18 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo Installing Node.js...
-      - n 22
-      - node -v  # Check the installed Node.js version
+      - echo "Installing dependencies..."
       - npm install --legacy-peer-deps
+      - echo "Checking file permissions..."
+      - ls -la node_modules/.bin
+      - ls -la node_modules/.bin/tsup
+      - echo "Checking executable permissions for tsup..."
+      - if [ -x "$(command -v tsup)" ]; then echo "tsup is executable"; else echo "tsup is not executable"; fi
 
   build:
     commands:
-      - echo Building the project...
+      - echo "Building the project..."
+      - export PATH=$PATH:./node_modules/.bin
       - npm run build
 
 artifacts:
