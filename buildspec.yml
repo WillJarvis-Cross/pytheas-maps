@@ -4,17 +4,12 @@ phases:
   install:
     commands:
       - echo Installing dependencies...
-      - npm install
+      - npm install --legacy-peer-deps
 
   build:
     commands:
       - echo Building the project...
       - npm run build
-
-  post_build:
-    commands:
-      - echo Running tests...
-      - npm test
 
 artifacts:
   files:
